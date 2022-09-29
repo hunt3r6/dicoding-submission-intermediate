@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Story App</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="error_password">Password Kurang dari 6 Karakter</string>
+    <string name="error_email">Email Tidak Valid</string>
+    <string name="btn_txt_login">Login</string>
+    <string name="txt_register">Tidak Punya Akun? Daftar</string>
+    <string name="name">Nama</string>
+    <string name="register">Daftar</string>
+    <string name="sudah_mempunyai_akun_login">Sudah Mempunyai Akun? Login</string>
+</resources>
