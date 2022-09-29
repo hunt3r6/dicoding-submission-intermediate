@@ -42,6 +42,7 @@ android {
 dependencies {
 
     def coil_version = "2.1.0"
+    def crypto_version = "1.0.0"
 
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
@@ -49,8 +50,8 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     // ktx
-    implementation 'androidx.activity:activity-ktx:1.5.1'
-    implementation 'androidx.fragment:fragment-ktx:1.5.2'
+    implementation 'androidx.activity:activity-ktx:1.6.0'
+    implementation 'androidx.fragment:fragment-ktx:1.5.3'
     implementation "androidx.lifecycle:lifecycle-livedata-core-ktx:2.6.0-alpha02"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.0-alpha02"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.6.0-alpha02"
@@ -63,6 +64,8 @@ dependencies {
 
     // coil
     implementation "io.coil-kt:coil:$coil_version"
+
+    implementation "androidx.security:security-crypto:$crypto_version"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

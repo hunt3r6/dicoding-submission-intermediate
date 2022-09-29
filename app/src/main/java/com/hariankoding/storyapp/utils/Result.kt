@@ -1,4 +1,4 @@
-package com.hariankoding.storyapp.remote
+package com.hariankoding.storyapp.utils
 
 sealed class Result<out R> private constructor() {
     data class Success<out T>(val data: T) : Result<T>()
