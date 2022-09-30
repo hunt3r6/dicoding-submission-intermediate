@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.hariankoding.storyapp.di.Injection
 import com.hariankoding.storyapp.remote.Repository
 import com.hariankoding.storyapp.ui.login.LoginViewModel
+import com.hariankoding.storyapp.ui.register.RegisterViewModel
 
 class ViewModelFactory private constructor(
     private val repository: Repository
@@ -24,6 +25,9 @@ class ViewModelFactory private constructor(
         return when {
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
                 LoginViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(RegisterViewModel::class.java) -> {
+                RegisterViewModel(repository) as T
             }
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }
