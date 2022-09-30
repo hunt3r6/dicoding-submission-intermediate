@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.hariankoding.storyapp.databinding.ActivityRegisterBinding
 import com.hariankoding.storyapp.ui.login.LoginActivity
@@ -41,6 +42,15 @@ class RegisterActivity : AppCompatActivity() {
                         binding.edRegisterName.setText("")
                         binding.edRegisterEmail.setText("")
                         binding.edRegisterPassword.setText("")
+                        AlertDialog.Builder(this).apply {
+                            setTitle("Yeah!")
+                            setMessage("Akunnya sudah jadi nih. Yuk, Kita Login")
+                            setPositiveButton("Lanjut") { _, _ ->
+                                finish()
+                            }
+                            create()
+                            show()
+                        }
                     }
                 }
                 is Result.Error -> {
