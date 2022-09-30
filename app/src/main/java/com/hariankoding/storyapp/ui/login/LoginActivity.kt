@@ -6,9 +6,11 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.hariankoding.storyapp.databinding.ActivityLoginBinding
+import com.hariankoding.storyapp.ui.home.MainActivity
 import com.hariankoding.storyapp.ui.register.RegisterActivity
 import com.hariankoding.storyapp.utils.Result
 import com.hariankoding.storyapp.utils.SharedPreferencesHelper
+import com.hariankoding.storyapp.utils.UtilsUi
 import com.hariankoding.storyapp.viewmodel.ViewModelFactory
 
 class LoginActivity : AppCompatActivity() {
@@ -35,19 +37,35 @@ class LoginActivity : AppCompatActivity() {
         viewModel.loginResponse.observe(this) { result ->
             when (result) {
                 is Result.Loading -> {
-
+                    binding.btnLogin.isEnabled = false
+                    UtilsUi.showDialog(this)
                 }
                 is Result.Success -> {
+                    UtilsUi.closeDialog()
+                    binding.btnLogin.isEnabled = true
                     result.data.let {
-                        Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                        if (!it.error) {
+                            prefHelper.saveAuthToken(it.loginResult.token)
+                            message(it.message)
+                            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                            finish()
+                        } else {
+                            message(it.message)
+                        }
                     }
                 }
                 is Result.Error -> {
-
+                    UtilsUi.closeDialog()
+                    binding.btnLogin.isEnabled = true
+                    message(result.error)
                 }
             }
 
         }
+    }
+
+    private fun message(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     private fun setOnClick() {
