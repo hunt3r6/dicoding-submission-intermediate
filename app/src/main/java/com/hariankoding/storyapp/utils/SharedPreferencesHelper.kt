@@ -52,4 +52,10 @@ class SharedPreferencesHelper {
         return prefs?.getString(USER_TOKEN, "")
     }
 
+    fun deleteDataAuth() {
+        prefs?.edit(commit = true) {
+            remove(USER_TOKEN)
+        }
+    }
+
 }

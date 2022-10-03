@@ -10,4 +10,5 @@
     <string name="register">Daftar</string>
     <string name="sudah_mempunyai_akun_login">Sudah Mempunyai Akun? Login</string>
     <string name="silahkan_tunggu">Silahkan Tunggu</string>
+    <string name="add_story">add story</string>
 </resources>
