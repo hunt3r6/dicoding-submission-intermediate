@@ -2,6 +2,7 @@ package com.hariankoding.storyapp.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -35,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         setView()
+        viewModel.loadStory()
         setObserver()
         setClick()
     }
@@ -59,6 +61,16 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+    private val launcherIntent =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == CREATE_STORY) {
+                val isUpdate = it.data?.getBooleanExtra("isUpdate", false)
+                if (isUpdate == true) {
+                    viewModel.loadStory()
+                }
+            }
+        }
 
     private fun setObserver() {
         viewModel.listStoryResponse.observe(this) { result ->
@@ -86,5 +98,14 @@ class MainActivity : AppCompatActivity() {
             setHasFixedSize(true)
             adapter = storyAdapter
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.loadStory()
+    }
+
+    companion object {
+        const val CREATE_STORY = 200
     }
 }

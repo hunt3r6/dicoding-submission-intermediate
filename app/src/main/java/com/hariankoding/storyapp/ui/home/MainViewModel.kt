@@ -17,12 +17,7 @@ import java.io.IOException
 class MainViewModel(private val repository: Repository) : ViewModel() {
     private var _listStoryResponse = MutableLiveData<Result<StoriesResponse>>()
     val listStoryResponse: LiveData<Result<StoriesResponse>> get() = _listStoryResponse
-
-    init {
-        loadStory()
-    }
-
-    private fun loadStory() {
+    fun loadStory() {
         _listStoryResponse.postValue(Result.Loading)
         viewModelScope.launch {
             try {
