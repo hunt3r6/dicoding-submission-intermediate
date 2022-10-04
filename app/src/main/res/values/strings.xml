@@ -11,4 +11,10 @@
     <string name="sudah_mempunyai_akun_login">Sudah Mempunyai Akun? Login</string>
     <string name="silahkan_tunggu">Silahkan Tunggu</string>
     <string name="add_story">add story</string>
+    <string name="add_photo">Add Photo</string>
+    <string name="new_story">New Story</string>
+    <string name="add_description_here">Add Description here ....</string>
+    <string name="upload">Upload</string>
+    <string name="gallery">Gallery</string>
+    <string name="camera">Camera</string>
 </resources>

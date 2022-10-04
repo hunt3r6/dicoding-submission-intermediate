@@ -7,6 +7,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hariankoding.storyapp.databinding.ActivityMainBinding
+import com.hariankoding.storyapp.ui.createstory.CreateStoryActivity
 import com.hariankoding.storyapp.ui.login.LoginActivity
 import com.hariankoding.storyapp.utils.Result
 import com.hariankoding.storyapp.utils.SharedPreferencesHelper
@@ -51,6 +52,10 @@ class MainActivity : AppCompatActivity() {
                 create()
                 show()
             }
+        }
+
+        binding.btnAddStory.setOnClickListener {
+            startActivity(Intent(this@MainActivity, CreateStoryActivity::class.java))
         }
 
     }
