@@ -75,7 +75,10 @@ class CreateStoryActivity : AppCompatActivity() {
         setUi()
         binding.btnCamera.setOnClickListener { startCameraX() }
         binding.btnGallery.setOnClickListener { startGallery() }
-        binding.btnUpload.setOnClickListener { uploadImage() }
+        binding.btnUpload.setOnClickListener {
+            binding.btnUpload.isEnabled = false
+            uploadImage()
+        }
         setObserve()
     }
 
@@ -89,27 +92,46 @@ class CreateStoryActivity : AppCompatActivity() {
                     UtilsUi.closeDialog()
                     result.data.let {
                         if (!it.error) {
+                            val intent = Intent()
+                            intent.putExtra("isUpdate", true)
+                            setResult(MainActivity.CREATE_STORY, intent)
                             finish()
+                            binding.btnUpload.isEnabled = true
                         }
                     }
                 }
                 is Result.Error -> {
                     UtilsUi.closeDialog()
+                    showMessage(result.error)
+                    binding.btnUpload.isEnabled = true
                 }
             }
         }
     }
 
     private fun uploadImage() {
+        val description = binding.edAddDescription.text.toString()
+        if (description.isEmpty()) {
+            binding.tlDescription.error = getString(R.string.is_not_empty)
+            return
+        }
         if (getFile != null) {
             val file = reduceFileImage(getFile as File)
-            val description =
-                binding.edAddDescription.text.toString().toRequestBody("text/plain".toMediaType())
             val requestImageFile = file.asRequestBody("image/jpg".toMediaType())
             val imageMultipart: MultipartBody.Part =
                 MultipartBody.Part.createFormData("photo", file.name, requestImageFile)
-            viewModel.uploadImage(imageMultipart, description)
+            viewModel.uploadImage(
+                imageMultipart,
+                description.toRequestBody("text/plain".toMediaType())
+            )
+        } else {
+            showMessage("Image is Required")
         }
+    }
+
+    private fun showMessage(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+
     }
 
     private fun startCameraX() {

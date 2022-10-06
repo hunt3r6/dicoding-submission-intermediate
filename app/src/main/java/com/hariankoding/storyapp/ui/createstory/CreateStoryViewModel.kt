@@ -15,14 +15,14 @@ class CreateStoryViewModel(private val repository: Repository) : ViewModel() {
     private var _uploadResponse = MutableLiveData<Result<Response>>()
     val uploadResponse: LiveData<Result<Response>> get() = _uploadResponse
 
-    fun uploadImage(file: MultipartBody.Part, description: RequestBody){
+    fun uploadImage(file: MultipartBody.Part, description: RequestBody) {
         _uploadResponse.postValue(Result.Loading)
         viewModelScope.launch {
             try {
                 val data = repository.uploadStories(file, description)
                 _uploadResponse.postValue(Result.Success(data))
-            }catch (e:Exception) {
-
+            } catch (e: Exception) {
+                _uploadResponse.postValue(Result.Error(e.toString()))
             }
 
         }

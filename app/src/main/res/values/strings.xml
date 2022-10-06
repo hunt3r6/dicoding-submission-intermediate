@@ -17,4 +17,6 @@
     <string name="upload">Upload</string>
     <string name="gallery">Gallery</string>
     <string name="camera">Camera</string>
+    <string name="is_not_empty">Is Not Empty</string>
+
 </resources>

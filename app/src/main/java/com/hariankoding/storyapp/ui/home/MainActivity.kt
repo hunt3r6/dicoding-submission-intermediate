@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         setView()
-        viewModel.loadStory()
         setObserver()
         setClick()
     }
@@ -57,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnAddStory.setOnClickListener {
-            startActivity(Intent(this@MainActivity, CreateStoryActivity::class.java))
+            launcherIntent.launch(Intent(this@MainActivity, CreateStoryActivity::class.java))
         }
 
     }
@@ -73,6 +72,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     private fun setObserver() {
+        viewModel.loadStory()
         viewModel.listStoryResponse.observe(this) { result ->
             when (result) {
                 is Result.Loading -> {
