@@ -14,7 +14,7 @@ import com.hariankoding.storyapp.databinding.ItemStoryBinding
 import com.hariankoding.storyapp.model.ListStoryItem
 import com.hariankoding.storyapp.ui.detail.DetailActivity
 
-class StoryAdapter() :
+class StoryAdapter :
     ListAdapter<ListStoryItem, StoryAdapter.StoryViewHolder>(diffCallback) {
 
     inner class StoryViewHolder(private val binding: ItemStoryBinding) :

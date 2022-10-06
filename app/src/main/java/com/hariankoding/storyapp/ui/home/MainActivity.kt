@@ -6,11 +6,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hariankoding.storyapp.databinding.ActivityMainBinding
 import com.hariankoding.storyapp.ui.createstory.CreateStoryActivity
-import com.hariankoding.storyapp.ui.detail.DetailActivity
 import com.hariankoding.storyapp.ui.login.LoginActivity
 import com.hariankoding.storyapp.utils.Result
 import com.hariankoding.storyapp.utils.SharedPreferencesHelper
@@ -27,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val storyAdapter by lazy {
-        StoryAdapter ()
+        StoryAdapter()
     }
 
     private val prefHelper by lazy {
