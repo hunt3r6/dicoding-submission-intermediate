@@ -1,5 +1,6 @@
 package com.hariankoding.storyapp.ui.home
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -24,6 +25,7 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
                 val data = repository.allStories()
                 _listStoryResponse.postValue(Result.Success(data))
             } catch (e: Exception) {
+                _listStoryResponse.postValue(Result.Error(e.toString()))
                 when (e) {
                     is IOException -> {
                         _listStoryResponse.postValue(
