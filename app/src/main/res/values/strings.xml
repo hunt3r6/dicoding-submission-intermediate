@@ -13,10 +13,12 @@
     <string name="add_story">add story</string>
     <string name="add_photo">Add Photo</string>
     <string name="new_story">New Story</string>
+    <string name="detail_story">Detail Story</string>
     <string name="add_description_here">Add Description here ....</string>
     <string name="upload">Upload</string>
     <string name="gallery">Gallery</string>
     <string name="camera">Camera</string>
     <string name="is_not_empty">Is Not Empty</string>
+    <string name="daftar_apps_story">Daftar Apps Story</string>
 
 </resources>
