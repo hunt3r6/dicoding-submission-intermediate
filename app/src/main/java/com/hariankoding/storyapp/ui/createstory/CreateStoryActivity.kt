@@ -12,6 +12,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.widget.doAfterTextChanged
 import com.hariankoding.storyapp.R
 import com.hariankoding.storyapp.databinding.ActivityCreateStoryBinding
 import com.hariankoding.storyapp.ui.home.MainActivity
@@ -80,6 +81,16 @@ class CreateStoryActivity : AppCompatActivity() {
             uploadImage()
         }
         setObserve()
+        setOnChange()
+    }
+
+    private fun setOnChange() {
+        binding.edAddDescription.apply {
+            doAfterTextChanged { binding.tlDescription.isErrorEnabled = false }
+            setOnFocusChangeListener { _, _ ->
+                binding.tlDescription.isErrorEnabled = false
+            }
+        }
     }
 
     private fun setObserve() {
@@ -113,6 +124,7 @@ class CreateStoryActivity : AppCompatActivity() {
         val description = binding.edAddDescription.text.toString()
         if (description.isEmpty()) {
             binding.tlDescription.error = getString(R.string.is_not_empty)
+            binding.btnUpload.isEnabled = true
             return
         }
         if (getFile != null) {
@@ -125,6 +137,7 @@ class CreateStoryActivity : AppCompatActivity() {
                 description.toRequestBody("text/plain".toMediaType())
             )
         } else {
+            binding.btnUpload.isEnabled = true
             showMessage("Image is Required")
         }
     }
