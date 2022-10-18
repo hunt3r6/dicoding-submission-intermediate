@@ -8,7 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-class ApiConfig {
+object ApiConfig {
     private lateinit var apiService: ApiService
 
     fun getApiService(context: Context): ApiService {

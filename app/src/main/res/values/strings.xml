@@ -20,5 +20,7 @@
     <string name="camera">Camera</string>
     <string name="is_not_empty">Is Not Empty</string>
     <string name="daftar_apps_story">Daftar Apps Story</string>
+    <string name="take_camera">Take Camera</string>
+    <string name="change_camera">Change Camera</string>
 
 </resources>

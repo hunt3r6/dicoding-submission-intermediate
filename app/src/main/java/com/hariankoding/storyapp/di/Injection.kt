@@ -7,7 +7,7 @@ import com.hariankoding.storyapp.remote.Repository
 object Injection {
 
     fun provideRepository(context: Context): Repository {
-        val apiService = ApiConfig().getApiService(context)
+        val apiService = ApiConfig.getApiService(context)
         return Repository.getInstance(apiService)
     }
 }
