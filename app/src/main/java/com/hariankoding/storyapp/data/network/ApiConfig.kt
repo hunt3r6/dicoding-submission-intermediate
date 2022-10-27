@@ -1,4 +1,4 @@
-package com.hariankoding.storyapp.remote
+package com.hariankoding.storyapp.data.network
 
 import android.content.Context
 import com.hariankoding.storyapp.BuildConfig
@@ -12,7 +12,7 @@ object ApiConfig {
     private lateinit var apiService: ApiService
 
     fun getApiService(context: Context): ApiService {
-        if (!::apiService.isInitialized) {
+        if (!ApiConfig::apiService.isInitialized) {
             val retrofit = Retrofit.Builder()
                 .baseUrl(BuildConfig.API_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())

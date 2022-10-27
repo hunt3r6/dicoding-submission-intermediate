@@ -1,4 +1,4 @@
-package com.hariankoding.storyapp.model
+package com.hariankoding.storyapp.data.network.model
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

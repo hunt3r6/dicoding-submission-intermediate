@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
 import com.hariankoding.storyapp.R
+import com.hariankoding.storyapp.data.database.entity.ListStoryEntity
 import com.hariankoding.storyapp.databinding.ActivityDetailBinding
-import com.hariankoding.storyapp.model.ListStoryItem
 
 class DetailActivity : AppCompatActivity() {
     private val binding by lazy {
@@ -26,7 +26,7 @@ class DetailActivity : AppCompatActivity() {
             }
             title = getString(R.string.detail_story)
         }
-        val story = intent.getParcelableExtra<ListStoryItem>(EXTRA_STORY) as ListStoryItem
+        val story = intent.getParcelableExtra<ListStoryEntity>(EXTRA_STORY) as ListStoryEntity
         ivDetailPhoto.load(story.photoUrl)
         tvDetailName.text = story.name
         tvDetailDescription.text = story.description

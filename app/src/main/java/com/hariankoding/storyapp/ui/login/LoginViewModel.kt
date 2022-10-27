@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.hariankoding.storyapp.model.LoginResponse
-import com.hariankoding.storyapp.model.Response
-import com.hariankoding.storyapp.remote.Repository
+import com.hariankoding.storyapp.data.network.model.LoginResponse
+import com.hariankoding.storyapp.data.network.model.Response
+import com.hariankoding.storyapp.data.Repository
 import com.hariankoding.storyapp.utils.Result
 import kotlinx.coroutines.launch
 import retrofit2.HttpException

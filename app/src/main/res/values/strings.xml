@@ -22,5 +22,6 @@
     <string name="daftar_apps_story">Daftar Apps Story</string>
     <string name="take_camera">Take Camera</string>
     <string name="change_camera">Change Camera</string>
+    <string name="retry">Coba lagi</string>
 
 </resources>

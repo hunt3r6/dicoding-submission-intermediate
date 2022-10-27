@@ -6,23 +6,23 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.hariankoding.storyapp.data.database.entity.ListStoryEntity
 import com.hariankoding.storyapp.databinding.ItemStoryBinding
-import com.hariankoding.storyapp.model.ListStoryItem
 import com.hariankoding.storyapp.ui.detail.DetailActivity
 
 class StoryAdapter :
-    ListAdapter<ListStoryItem, StoryAdapter.StoryViewHolder>(diffCallback) {
+    PagingDataAdapter<ListStoryEntity, StoryAdapter.StoryViewHolder>(diffCallback) {
 
     inner class StoryViewHolder(private val binding: ItemStoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: ListStoryItem) {
+        fun bind(item: ListStoryEntity?) {
             with(binding) {
-                ivItemPhoto.load(item.photoUrl)
-                tvItemName.text = item.name
+                ivItemPhoto.load(item?.photoUrl)
+                tvItemName.text = item?.name
                 cvStory.setOnClickListener {
                     val intent = Intent(itemView.context, DetailActivity::class.java)
                     intent.putExtra(DetailActivity.EXTRA_STORY, item)
@@ -49,13 +49,16 @@ class StoryAdapter :
 
 
     companion object {
-        val diffCallback = object : DiffUtil.ItemCallback<ListStoryItem>() {
-            override fun areItemsTheSame(oldItem: ListStoryItem, newItem: ListStoryItem): Boolean =
+        val diffCallback = object : DiffUtil.ItemCallback<ListStoryEntity>() {
+            override fun areItemsTheSame(
+                oldItem: ListStoryEntity,
+                newItem: ListStoryEntity
+            ): Boolean =
                 oldItem.id == newItem.id
 
             override fun areContentsTheSame(
-                oldItem: ListStoryItem,
-                newItem: ListStoryItem
+                oldItem: ListStoryEntity,
+                newItem: ListStoryEntity
             ): Boolean = oldItem == newItem
 
         }

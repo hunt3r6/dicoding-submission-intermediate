@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hariankoding.storyapp.model.Response
-import com.hariankoding.storyapp.remote.Repository
+import com.hariankoding.storyapp.data.network.model.Response
+import com.hariankoding.storyapp.data.Repository
 import com.hariankoding.storyapp.utils.Result
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody

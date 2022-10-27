@@ -4,20 +4,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import com.hariankoding.storyapp.model.Response
-import com.hariankoding.storyapp.model.StoriesResponse
-import com.hariankoding.storyapp.remote.Repository
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.hariankoding.storyapp.data.Repository
+import com.hariankoding.storyapp.data.database.entity.ListStoryEntity
+import com.hariankoding.storyapp.data.network.model.StoriesResponse
 import com.hariankoding.storyapp.utils.Result
-import kotlinx.coroutines.launch
-import retrofit2.HttpException
-import java.io.IOException
 
 class MainViewModel(private val repository: Repository) : ViewModel() {
     private var _listStoryResponse = MutableLiveData<Result<StoriesResponse>>()
-    val listStoryResponse: LiveData<Result<StoriesResponse>> get() = _listStoryResponse
-    fun loadStory() {
+    val listStoryResponse: LiveData<PagingData<ListStoryEntity>> =
+        repository.allStories().cachedIn(viewModelScope)
+
+    /*fun loadStory() {
         _listStoryResponse.postValue(Result.Loading)
         viewModelScope.launch {
             try {
@@ -50,6 +49,6 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
             }
 
         }
-    }
+    }*/
 
 }

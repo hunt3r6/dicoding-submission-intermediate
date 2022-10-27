@@ -8,12 +8,11 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.hariankoding.storyapp.data.adapter.LoadingStateAdapter
 import com.hariankoding.storyapp.databinding.ActivityMainBinding
 import com.hariankoding.storyapp.ui.createstory.CreateStoryActivity
 import com.hariankoding.storyapp.ui.login.LoginActivity
-import com.hariankoding.storyapp.utils.Result
 import com.hariankoding.storyapp.utils.SharedPreferencesHelper
-import com.hariankoding.storyapp.utils.UtilsUi
 import com.hariankoding.storyapp.viewmodel.ViewModelFactory
 
 class MainActivity : AppCompatActivity() {
@@ -67,14 +66,15 @@ class MainActivity : AppCompatActivity() {
             if (it.resultCode == CREATE_STORY) {
                 val isUpdate = it.data?.getBooleanExtra("isUpdate", false)
                 if (isUpdate == true) {
-                    viewModel.loadStory()
+                    storyAdapter.refresh()
+                    //viewModel.loadStory()
                 }
             }
         }
 
     private fun setObserver() {
-        viewModel.loadStory()
-        viewModel.listStoryResponse.observe(this) { result ->
+        //viewModel.loadStory()
+        /*viewModel.listStoryResponse.observe(this) { result ->
             when (result) {
                 is Result.Loading -> {
                     UtilsUi.showDialog(this)
@@ -95,6 +95,9 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
+        }*/
+        viewModel.listStoryResponse.observe(this) {
+            storyAdapter.submitData(lifecycle, it)
         }
     }
 
@@ -106,7 +109,11 @@ class MainActivity : AppCompatActivity() {
         rvStoryList.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             setHasFixedSize(true)
-            adapter = storyAdapter
+            adapter = storyAdapter.withLoadStateFooter(
+                footer = LoadingStateAdapter {
+                    storyAdapter.retry()
+                }
+            )
         }
     }
 

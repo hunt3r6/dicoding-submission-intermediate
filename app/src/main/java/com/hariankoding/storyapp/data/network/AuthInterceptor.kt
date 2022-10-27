@@ -1,4 +1,4 @@
-package com.hariankoding.storyapp.remote
+package com.hariankoding.storyapp.data.network
 
 import android.content.Context
 import com.hariankoding.storyapp.utils.SharedPreferencesHelper

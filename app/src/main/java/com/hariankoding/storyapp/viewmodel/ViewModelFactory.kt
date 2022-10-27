@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.hariankoding.storyapp.di.Injection
-import com.hariankoding.storyapp.remote.Repository
+import com.hariankoding.storyapp.data.Repository
 import com.hariankoding.storyapp.ui.createstory.CreateStoryViewModel
 import com.hariankoding.storyapp.ui.home.MainViewModel
 import com.hariankoding.storyapp.ui.login.LoginViewModel
