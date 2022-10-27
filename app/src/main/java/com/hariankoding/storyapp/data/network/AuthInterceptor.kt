@@ -9,7 +9,6 @@ class AuthInterceptor(context: Context) : Interceptor {
     private val sessionManager = SharedPreferencesHelper.invoke(context)
     override fun intercept(chain: Interceptor.Chain): Response {
         val requestBuilder = chain.request().newBuilder()
-        // If token has been saved, add it to the request
         sessionManager.fetchAuthToken()?.let {
             requestBuilder.addHeader("Authorization", "Bearer $it")
         }

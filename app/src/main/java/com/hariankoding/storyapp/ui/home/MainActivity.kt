@@ -2,7 +2,6 @@ package com.hariankoding.storyapp.ui.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
@@ -67,42 +66,14 @@ class MainActivity : AppCompatActivity() {
                 val isUpdate = it.data?.getBooleanExtra("isUpdate", false)
                 if (isUpdate == true) {
                     storyAdapter.refresh()
-                    //viewModel.loadStory()
                 }
             }
         }
 
     private fun setObserver() {
-        //viewModel.loadStory()
-        /*viewModel.listStoryResponse.observe(this) { result ->
-            when (result) {
-                is Result.Loading -> {
-                    UtilsUi.showDialog(this)
-                }
-                is Result.Success -> {
-                    UtilsUi.closeDialog()
-                    result.data.let {
-                        if (!it.error){
-                            storyAdapter.submitList(it.listStory)
-                        }else {
-                            showMessage(it.message)
-                        }
-                    }
-                }
-                is Result.Error -> {
-                    UtilsUi.closeDialog()
-                    showMessage(result.error)
-                }
-            }
-
-        }*/
         viewModel.listStoryResponse.observe(this) {
             storyAdapter.submitData(lifecycle, it)
         }
-    }
-
-    private fun showMessage(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     private fun setView() = with(binding) {

@@ -43,7 +43,6 @@ class Repository private constructor(
             remoteMediator = StoryRemoteMediator(database, apiService),
             pagingSourceFactory = {
                 database.storyDao().getAllStory()
-                //StoryPagingSource(apiService)
             }
         ).liveData
     }
