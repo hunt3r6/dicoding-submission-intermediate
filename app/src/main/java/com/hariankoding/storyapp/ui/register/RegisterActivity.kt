@@ -27,7 +27,6 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         setOnClick()
-        setObserver()
         setAnimation()
     }
 
@@ -47,8 +46,8 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
-    private fun setObserver() {
-        viewModel.registerResponse.observe(this) { result ->
+    private fun register(name: String, email: String, password: String) {
+        viewModel.register(name, email, password).observe(this) { result ->
             when (result) {
                 is Result.Loading -> {
                     binding.btnRegister.isEnabled = false
@@ -91,7 +90,7 @@ class RegisterActivity : AppCompatActivity() {
             val name = edRegisterName.text.toString()
             val email = edRegisterEmail.text.toString()
             val password = edRegisterPassword.text.toString()
-            viewModel.register(name, email, password)
+            register(name, email, password)
         }
         btnLogin.setOnClickListener {
             val intent = Intent(this@RegisterActivity, LoginActivity::class.java)

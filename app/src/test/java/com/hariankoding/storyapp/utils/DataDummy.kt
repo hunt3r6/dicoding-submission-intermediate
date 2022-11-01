@@ -1,8 +1,7 @@
 package com.hariankoding.storyapp.utils
 
 import com.hariankoding.storyapp.data.database.entity.ListStoryEntity
-import com.hariankoding.storyapp.data.network.model.ListStoryItem
-import com.hariankoding.storyapp.data.network.model.StoriesResponse
+import com.hariankoding.storyapp.data.network.model.*
 
 object DataDummy {
 
@@ -41,6 +40,26 @@ object DataDummy {
             listStory = item,
             error = false,
             message = "Stories fetched successfully"
+        )
+    }
+
+    fun generateResponseRegister(): Response {
+        return Response(
+            error = false, message = "success"
+        )
+    }
+
+    fun generateResponseLogin(): LoginResponse {
+        val loginResult = LoginResult(
+            userId = "user-WTdihB1x0Rl1zDRD",
+            name = "faisal",
+            token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ1c2VyLVdUZGloQjF4MFJsMXpEUkQiLCJpYXQiOjE2NjczMTQ3Njl9.qNWq-yGI2FVuvi8lixoRMkSe4xXp_7JrAzr1jkSfq9A"
+        )
+
+        return LoginResponse(
+            loginResult = loginResult,
+            error = false,
+            message = "success"
         )
     }
 }

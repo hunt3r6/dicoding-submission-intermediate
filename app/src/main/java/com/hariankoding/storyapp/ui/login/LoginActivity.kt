@@ -33,7 +33,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         setOnClick()
-        setObserver()
         setAnimation()
     }
 
@@ -52,8 +51,8 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    private fun setObserver() {
-        viewModel.loginResponse.observe(this) { result ->
+    private fun login(email: String, password: String) {
+        viewModel.login(email, password).observe(this) { result ->
             when (result) {
                 is Result.Loading -> {
                     binding.btnLogin.isEnabled = false
@@ -91,7 +90,7 @@ class LoginActivity : AppCompatActivity() {
         binding.btnLogin.setOnClickListener {
             val email = binding.edLoginEmail.text.toString()
             val password = binding.edLoginPassword.text.toString()
-            viewModel.login(email, password)
+            login(email, password)
         }
 
         binding.btnRegister.setOnClickListener {

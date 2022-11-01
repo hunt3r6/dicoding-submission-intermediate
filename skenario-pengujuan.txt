@@ -16,3 +16,15 @@ Ketika data location story berhasil di muat
 3. memastikan jumlah data sesuai yang di inginkan
 Ketika Error data dimuat
 1. memastikan data mengembalikan Result.Error
+
+Skenario pada class RegisterViewModelTest
+Ketika register berhasil
+1. memastikan data mengembalikan Result.Success
+Ketika register gagal
+1. memastikan data mengembalikan Result.Error
+
+Skenario pada class LoginViewModelTest
+Ketika login berhasil
+1. memastikan data mengembalikan Result.Success
+Ketika login gagal
+1. memastikan data mengembalikan Result.Error
