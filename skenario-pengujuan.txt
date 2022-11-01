@@ -1,0 +1,18 @@
+Unit Test
+Skenario pada class MainViewmodel
+Ketika berhasil memuat data story
+1. memastikan data tidak berniali null
+2. memastikan jumlah data sesuai yang diharapkan
+
+Skenario pada class StoryRemoteMediatorTest
+Ketika data selanjutnya ada
+1. Memastikan fungsi load mengembalikan RemoteMediator.MediatorResult.Success.
+2. Memastikan jumlah endOfPaginationReached bernilai false.
+
+Skenario pada class LocationViewModelTest
+Ketika data location story berhasil di muat
+1. memastikan data mengembalikan Result.Success
+2. memastikan data tidak null
+3. memastikan jumlah data sesuai yang di inginkan
+Ketika Error data dimuat
+1. memastikan data mengembalikan Result.Error

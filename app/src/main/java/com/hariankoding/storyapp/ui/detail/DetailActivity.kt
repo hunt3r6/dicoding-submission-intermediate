@@ -22,7 +22,7 @@ class DetailActivity : AppCompatActivity() {
         toolbar.apply {
             setNavigationIcon(R.drawable.ic_arrow_back)
             setNavigationOnClickListener {
-                finish()
+                onBackPressed()
             }
             title = getString(R.string.detail_story)
         }
