@@ -11,6 +11,9 @@
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="18" />
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -21,8 +24,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StoryApp"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBZBOFx67C30wxWSyib_6tO6JEw0ane5aM" />
+
         <activity
-            android:name=".LocationActivity"
+            android:name=".ui.location.LocationActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

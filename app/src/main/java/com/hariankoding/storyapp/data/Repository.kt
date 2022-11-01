@@ -7,6 +7,7 @@ import com.hariankoding.storyapp.data.database.StoryRemoteMediator
 import com.hariankoding.storyapp.data.database.entity.ListStoryEntity
 import com.hariankoding.storyapp.data.network.ApiService
 import com.hariankoding.storyapp.data.network.model.LoginResponse
+import com.hariankoding.storyapp.data.network.model.StoriesResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 
@@ -46,5 +47,8 @@ class Repository private constructor(
             }
         ).liveData
     }
+
+    suspend fun locationStory(): StoriesResponse = apiService.allStories(location = 1)
+
 
 }

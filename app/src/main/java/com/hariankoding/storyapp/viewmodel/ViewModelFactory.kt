@@ -3,10 +3,11 @@ package com.hariankoding.storyapp.viewmodel
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.hariankoding.storyapp.di.Injection
 import com.hariankoding.storyapp.data.Repository
+import com.hariankoding.storyapp.di.Injection
 import com.hariankoding.storyapp.ui.createstory.CreateStoryViewModel
 import com.hariankoding.storyapp.ui.home.MainViewModel
+import com.hariankoding.storyapp.ui.location.LocationViewModel
 import com.hariankoding.storyapp.ui.login.LoginViewModel
 import com.hariankoding.storyapp.ui.register.RegisterViewModel
 
@@ -36,6 +37,9 @@ class ViewModelFactory private constructor(
             }
             modelClass.isAssignableFrom(CreateStoryViewModel::class.java) -> {
                 CreateStoryViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(LocationViewModel::class.java) -> {
+                LocationViewModel(repository) as T
             }
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.hariankoding.storyapp.data.adapter.LoadingStateAdapter
 import com.hariankoding.storyapp.databinding.ActivityMainBinding
 import com.hariankoding.storyapp.ui.createstory.CreateStoryActivity
+import com.hariankoding.storyapp.ui.location.LocationActivity
 import com.hariankoding.storyapp.ui.login.LoginActivity
 import com.hariankoding.storyapp.utils.SharedPreferencesHelper
 import com.hariankoding.storyapp.viewmodel.ViewModelFactory
@@ -56,6 +57,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnAddStory.setOnClickListener {
             launcherIntent.launch(Intent(this@MainActivity, CreateStoryActivity::class.java))
+        }
+
+        binding.btnLocation.setOnClickListener {
+            startActivity(Intent(this@MainActivity, LocationActivity::class.java))
         }
 
     }

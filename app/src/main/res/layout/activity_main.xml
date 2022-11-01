@@ -23,6 +23,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/btn_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_8"
+        android:src="@drawable/ic_location"
+        app:layout_constraintBottom_toBottomOf="@id/btn_logout"
+        app:layout_constraintEnd_toStartOf="@id/btn_logout"
+        app:layout_constraintTop_toTopOf="@id/btn_logout" />
+
+    <ImageView
         android:id="@+id/btn_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
