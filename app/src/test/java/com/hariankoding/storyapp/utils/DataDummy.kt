@@ -2,6 +2,9 @@ package com.hariankoding.storyapp.utils
 
 import com.hariankoding.storyapp.data.database.entity.ListStoryEntity
 import com.hariankoding.storyapp.data.network.model.*
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 
 object DataDummy {
 
@@ -44,6 +47,22 @@ object DataDummy {
     }
 
     fun generateResponseRegister(): Response {
+        return Response(
+            error = false, message = "success"
+        )
+    }
+
+    fun generateDummyMultipartFile(): MultipartBody.Part {
+        val dummyText = "text"
+        return MultipartBody.Part.create(dummyText.toRequestBody())
+    }
+
+    fun generateDummyRequestBody(): RequestBody {
+        val dummyText = "text"
+        return dummyText.toRequestBody()
+    }
+
+    fun generateUploadSuccess(): Response {
         return Response(
             error = false, message = "success"
         )

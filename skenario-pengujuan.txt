@@ -28,3 +28,20 @@ Ketika login berhasil
 1. memastikan data mengembalikan Result.Success
 Ketika login gagal
 1. memastikan data mengembalikan Result.Error
+
+Skenario pada class CreateStoryViewModelTest
+Ketika upload berhasil
+1. memastikan data mengembalikan Result.Success
+Ketika upload gagal
+1. memastikan data mengembalikan Result.Error
+
+Skenario pada class RepositoryTest
+Ketika Login Berhasil
+1. response dari server status message success
+Ketika Register Berhasil
+1. response dari server status message success
+Ketika Menampilkan List Story
+1. data tidak null
+2. jumlah data yang ditampilan sudah sesuai
+Ketika Upload Berhasil
+1. response dari server status message success

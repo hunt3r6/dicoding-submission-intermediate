@@ -26,7 +26,7 @@ class LoginViewModelTest {
     @Mock
     private lateinit var repository: Repository
     private lateinit var loginViewModel: LoginViewModel
-    private val dummyStoryItem = DataDummy.generateResponseLogin()
+    private val dummyLoginResponse = DataDummy.generateResponseLogin()
     private val dummyEmail = "faisal@mail.com"
     private val dummyPassword = "password"
 
@@ -42,7 +42,7 @@ class LoginViewModelTest {
     @Test
     fun `when login success return Result Success`() = runTest {
         val expectedLogin = MutableLiveData<Result<LoginResponse>>()
-        expectedLogin.value = Result.Success(dummyStoryItem)
+        expectedLogin.value = Result.Success(dummyLoginResponse)
 
         Mockito.`when`(repository.login(dummyEmail, dummyPassword)).thenReturn(
             expectedLogin
