@@ -27,11 +27,9 @@ class LocationActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         binding = ActivityLocationBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setView()
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-        addManyMarker()
-
+        setView()
     }
 
     private val boundsBuilder = LatLngBounds.Builder()
@@ -84,10 +82,6 @@ class LocationActivity : AppCompatActivity(), OnMapReadyCallback {
             isCompassEnabled = true
             isMapToolbarEnabled = true
         }
-
-        // Add a marker in Sydney and move the camera
-//        val sydney = LatLng(-34.0, 151.0)
-//        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        addManyMarker()
     }
 }
