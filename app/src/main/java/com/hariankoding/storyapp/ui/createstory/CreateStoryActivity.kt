@@ -40,6 +40,8 @@ class CreateStoryActivity : AppCompatActivity() {
         private const val REQUEST_CODE_PERMISSIONS = 10
     }
 
+    private var isBackCamera: Boolean = false
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -167,7 +169,7 @@ class CreateStoryActivity : AppCompatActivity() {
     ) {
         if (it.resultCode == CAMERA_X_RESULT) {
             val myFile = it.data?.getSerializableExtra("picture") as File
-            val isBackCamera = it.data?.getBooleanExtra("isBackCamera", true) as Boolean
+            isBackCamera = it.data?.getBooleanExtra("isBackCamera", true) as Boolean
             getFile = myFile
             val result = rotateBitmap(BitmapFactory.decodeFile(myFile.path), isBackCamera)
             binding.imgPreview.setImageBitmap(result)

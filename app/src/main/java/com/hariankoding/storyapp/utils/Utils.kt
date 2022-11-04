@@ -6,8 +6,10 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
+import android.media.ExifInterface
 import android.net.Uri
 import android.os.Environment
+import android.util.Log
 import com.hariankoding.storyapp.R
 import java.io.*
 import java.text.SimpleDateFormat
@@ -82,16 +84,69 @@ fun uriToFile(selectImg: Uri, context: Context): File {
 }
 
 fun reduceFileImage(file: File): File {
-    val bitmap = BitmapFactory.decodeFile(file.path)
+    val bitmap = getRotate(file)
     var compressQuality = 100
     var streamLength: Int
     do {
         val bmpStream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, bmpStream)
+        bitmap?.compress(Bitmap.CompressFormat.JPEG, compressQuality, bmpStream)
         val bmpPicByteArray = bmpStream.toByteArray()
         streamLength = bmpPicByteArray.size
         compressQuality -= 5
     } while (streamLength > 1000000)
-    bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, FileOutputStream(file))
+    bitmap?.compress(Bitmap.CompressFormat.JPEG, compressQuality, FileOutputStream(file))
     return file
+}
+
+private fun getRotate(image: File): Bitmap? {
+    var bmp = BitmapFactory.decodeFile(image.path)
+    try {
+        val exif = ExifInterface(image.absolutePath)
+        val orientation = exif.getAttributeInt(
+            ExifInterface.TAG_ORIENTATION,
+            ExifInterface.ORIENTATION_UNDEFINED
+        )
+        bmp = when (orientation) {
+            ExifInterface.ORIENTATION_ROTATE_90 -> rotateImage(bmp, 90)
+            ExifInterface.ORIENTATION_ROTATE_180 -> rotateImage(bmp, 180)
+            ExifInterface.ORIENTATION_ROTATE_270 -> rotateImage(bmp, 270)
+            ExifInterface.ORIENTATION_NORMAL -> bmp
+            else -> bmp
+        }
+    } catch (e: IOException) {
+        e.printStackTrace()
+    }
+    return bmp
+}
+
+private fun rotateImage(imageToOrient: Bitmap, degreesToRotate: Int): Bitmap? {
+    var result: Bitmap? = imageToOrient
+    try {
+        if (degreesToRotate != 0) {
+            val matrix = Matrix()
+            matrix.setRotate(degreesToRotate.toFloat())
+            result = Bitmap.createBitmap(
+                imageToOrient,
+                0,
+                0,
+                imageToOrient.width,
+                imageToOrient.height,
+                matrix,
+                true /*filter*/
+            )
+        }
+    } catch (e: Exception) {
+        if (Log.isLoggable(
+                "TAG",
+                Log.ERROR
+            )
+        ) {
+            Log.e(
+                "TAG",
+                "Exception when trying to orient image",
+                e
+            )
+        }
+    }
+    return result
 }
