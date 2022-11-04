@@ -98,8 +98,19 @@ class Repository private constructor(
     }
 
 
-    suspend fun uploadStories(file: MultipartBody.Part, description: RequestBody) =
-        apiService.uploadStories(file, description)
+    fun uploadStories(
+        file: MultipartBody.Part,
+        description: RequestBody
+    ): LiveData<Result<Response>> = liveData {
+        emit(Result.Loading)
+        try {
+            val data = apiService.uploadStories(file, description)
+            emit(Result.Success(data))
+        } catch (e: Exception) {
+            emit(Result.Error(e.toString()))
+        }
+    }
+
 
     fun allStories(): LiveData<PagingData<ListStoryEntity>> {
         @OptIn(ExperimentalPagingApi::class)

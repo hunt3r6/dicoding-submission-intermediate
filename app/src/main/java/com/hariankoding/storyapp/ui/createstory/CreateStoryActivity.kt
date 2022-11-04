@@ -20,6 +20,7 @@ import com.hariankoding.storyapp.utils.*
 import com.hariankoding.storyapp.viewmodel.ViewModelFactory
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
@@ -82,7 +83,6 @@ class CreateStoryActivity : AppCompatActivity() {
             binding.btnUpload.isEnabled = false
             uploadImage()
         }
-        setObserve()
         setOnChange()
     }
 
@@ -95,8 +95,8 @@ class CreateStoryActivity : AppCompatActivity() {
         }
     }
 
-    private fun setObserve() {
-        viewModel.uploadResponse.observe(this) { result ->
+    private fun uploadStory(imageMultipart: MultipartBody.Part, toRequestBody: RequestBody) {
+        viewModel.uploadImage(imageMultipart, toRequestBody).observe(this) { result ->
             when (result) {
                 is Result.Loading -> {
                     UtilsUi.showDialog(this)
@@ -134,7 +134,7 @@ class CreateStoryActivity : AppCompatActivity() {
             val requestImageFile = file.asRequestBody("image/jpg".toMediaType())
             val imageMultipart: MultipartBody.Part =
                 MultipartBody.Part.createFormData("photo", file.name, requestImageFile)
-            viewModel.uploadImage(
+            uploadStory(
                 imageMultipart,
                 description.toRequestBody("text/plain".toMediaType())
             )
