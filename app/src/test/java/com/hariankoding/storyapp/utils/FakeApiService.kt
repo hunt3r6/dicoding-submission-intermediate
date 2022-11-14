@@ -11,11 +11,11 @@ import okhttp3.RequestBody
 class FakeApiService : ApiService {
 
     override suspend fun register(name: String, email: String, password: String): Response {
-        TODO("Not yet implemented")
+        return DataDummy.generateResponseRegister()
     }
 
     override suspend fun login(email: String, password: String): LoginResponse {
-        TODO("Not yet implemented")
+        return DataDummy.generateResponseLogin()
     }
 
     override suspend fun uploadStories(

@@ -43,5 +43,9 @@ Ketika Register Berhasil
 Ketika Menampilkan List Story
 1. data tidak null
 2. jumlah data yang ditampilan sudah sesuai
+Ketika Menampilkan List Story Location
+1. data tidak null
+2. data yang di dapat sama dengan data ada pada dummy
+3. jumlah data yang ditampilkan sudah sesuai
 Ketika Upload Berhasil
 1. response dari server status message success

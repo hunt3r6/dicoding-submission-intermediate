@@ -18,7 +18,7 @@ import okhttp3.RequestBody
 import retrofit2.HttpException
 import java.io.IOException
 
-class Repository private constructor(
+class Repository(
     private val apiService: ApiService,
     private val database: StoryDatabase
 ) {
